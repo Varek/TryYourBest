@@ -19,6 +19,8 @@ $(document).ready(function() {
     $('#edit-image-button').click(function(){
         image = $('#editable-image')[0];
 
+        // Set the image and source when the button is clicked.
+        // This makes it possible to go back in and edit on top of previous edits.
         featherEditor.launch({
             image: image.id,
             url: image.src
