@@ -17,6 +17,7 @@ $(document).ready(function() {
     });
 
 
+    // Edit
     $('#edit-image-button').click(function() {
         currentImage = $('#editable-image')[0];
 
@@ -28,6 +29,7 @@ $(document).ready(function() {
         });
     });
 
+    // Reset
     $('#reset-image-button').click(function() {
         if ($('#editable-image').attr('src') === originalImageSrc) {
             alert('Nothing to reset.');
