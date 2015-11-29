@@ -1,3 +1,7 @@
 .button-panel {
 	margin-bottom: 10px;
 }
+
+.img-select.img-thumbnail.selected {
+  border: 5px solid #337ab7;
+}
