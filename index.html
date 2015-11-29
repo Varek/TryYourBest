@@ -21,13 +21,15 @@
 		</div>
 		<div class="row">
 			<div class="col-md-4">
-				<img class="img-responsive img-select" src="images/historisches_museum.jpg"/>
+				<img class="img-responsive img-select selected img-thumbnail" src="images/historisches_museum.jpg"/>
 			</div>
 			<div class="col-md-4">
-				<img  class="img-responsive img-select" src="images/spreebogen.jpg"/>
+				<img  class="img-responsive img-select img-thumbnail" src="images/herbst-wickel.jpeg"/>
 			</div>
 			<div class="col-md-4">
-				<img class="img-responsive img-select" src="images/spreebogen.jpg"/>
+				<a href='https://dash.evercam.io/v1/cameras' target='_blank'>
+				Add more cameras
+				</a>
 			</div>
 		</div>
 		<a id='oneToTwo' class="btn btn-primary btn-lg" href="#" role="button">Next Step</a>
@@ -35,31 +37,40 @@
 
 <!-- edit image -->
 	<div class='stepTwo hidden'>
+		<div class='page-header'>
+			<h2>Second: edit the photo<h1>
+		</div>
 		<div class="row">
-			<div class="col-md-2">
-				<div class="row">
-					<div class="col-md-12">
-						<button id="edit-image-button" class="btn btn-primary btn-block button-panel">Edit Image</button>
-					</div>
-					<div class="col-md-12">
-						<button id="reset-image-button" class="btn btn-warning btn-block button-panel">Reset Image</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-9">
+			<div class="col-md-12">
 				<img id="editable-image" class="img-responsive" src=""/>
 			</div>
 		</div>
+		<a id='moreEdit' class="btn btn-default btn-lg" href="#" role="button">More Editing</a>
+		<a id='twoToThree' class="btn btn-primary btn-lg" href="#" role="button" disabled="disabled">Next Step</a>
 	</div>
 	<!-- compare to original image -->
 	<div class='stepThree hidden'>
-		<div class="row hidden">
+		<div class='page-header'>
+			<h2>Last: Compare to original<h1>
+		</div>
+		<div class="row">
 			<div class="col-md-6">
-				<img id="original-image" class="img-responsive" src="images/spreebogen.jpg"/>
+				<img id="original-image" class="img-responsive" src="images/historisches_museum.jpg"/>
+				<h4 id='original-image-score'></h4>
+				<div class="progress">
+				  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+				  </div>
+				</div>
 			</div>
 
 			<div class="col-md-6">
-				<img id="edited-image" class="img-responsive" src="images/spreebogen.jpg"/>
+				<img id="edited-image" class="img-responsive" src="images/historisches_museum-edit.jpg"/>
+				<h4 id='edited-image-score'></h4>
+				<div class="progress">
+				  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+				  </div>
+				</div>
+
 			</div>
 		</div>
 	</div>
