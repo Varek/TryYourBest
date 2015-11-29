@@ -6,6 +6,12 @@ var vision_post = [{
                  },{
                   "location": "https://vision.eyeem.com/photohackday/photos/mock",
                   "retryAfter": 2
+                 },{
+                  "location": "https://vision.eyeem.com/photohackday/photos/mock",
+                  "retryAfter": 2
+                 },{
+                  "location": "https://vision.eyeem.com/photohackday/photos/mock",
+                  "retryAfter": 2
                  }];
 
 var vision_get = [{"aestheticsScore":-0.223015968532929865,
@@ -13,23 +19,45 @@ var vision_get = [{"aestheticsScore":-0.223015968532929865,
                 {
                  "aestheticsScore":0.42643565954608365,
                  "concepts":["architecture","building exterior","construction","built structure","development","construction site","building","crane","cable","connection","city","industry","electricity pylon","power line","tower","development","city life","international landmark","residential district","urban","fish-eye lens","perspective","composition"]
-                 }];
+                 },
+                 {"aestheticsScore":0.26073796696192986,
+                  "concepts":["landscape","grass","day","field","rural scene","green color","agriculture","tranquil scene","green","dirt road","hill","outdoors","farm","tranquility","remote","physical geography","adventure","vacation","guidance","sign","fish-eye lens","perspective","composition"]},
+                  {"aestheticsScore":-0.27255699443149073,
+                  "concepts":["one person","human hand","indoors","part of","close-up","human body part","holding","cropped","human finger","detail","studio shot","love","single object","still life","heart shape","communication","symbol","ideas","sign","information","negative space"]}];
 
 $(document).ready(function() {
 
     featherEditor = new Aviary.Feather({
         apiKey: '25de736703e14d0abcca0c90abd3f56f',
-        onSave: function(imageID, newURL) {
-            editedImage.attr('src', newURL);
-            featherEditor.close();
-            console.log(newURL);
-            finalEditedImage = $('#edited-image');
-            finalEditedImage.attr('src', editedImage.attr('src'));
-            postToEyeEmVision(finalEditedImage,function(i,d) {
-              $('#twoToThree').attr('disabled',false);
-              setScore($(i),d);
+        onSaveButtonClicked: function() {
+            featherEditor.getImageData(function(data) {
+                // set image to new data, and close editor
+                if (editedImage) {
+                    editedImage.attr('src', data);
+                }
+                featherEditor.close();
+                // post to your server, use File API to download it, etc
+                finalEditedImage = $('#edited-image');
+                finalEditedImage.attr('src', editedImage.attr('src'));
+                postToEyeEmVision(finalEditedImage,function(i,d) {
+                  $('#twoToThree').attr('disabled',false);
+                  setScore($(i),d);
+                });
             });
+
+            return false;
         },
+        // onSave: function(imageID, newURL) {
+        //     editedImage.attr('src', newURL);
+        //     featherEditor.close();
+        //     console.log(newURL);
+        //     finalEditedImage = $('#edited-image');
+        //     finalEditedImage.attr('src', editedImage.attr('src'));
+        //     postToEyeEmVision(finalEditedImage,function(i,d) {
+        //       $('#twoToThree').attr('disabled',false);
+        //       setScore($(i),d);
+        //     });
+        // },
         onError: function(errorObj) {
             console.log(errorObj.code);
             console.log(errorObj.message);
@@ -69,6 +97,11 @@ $(document).ready(function() {
         $('.stepTwo').addClass('hidden');
         $('.stepThree').removeClass('hidden');
     });
+
+    $('#restart').on('click', function(e) {
+        $('.stepThree').addClass('hidden');
+        $('.stepOne').removeClass('hidden');
+    });
 });
 
 function editPhoto (editedImage) {
@@ -90,8 +123,8 @@ function postToEyeEmVision (image,resultCallback) {
   //   type: 'POST',
   //   url: 'https://vision.eyeem.com/photohackday/photos',
   //   dataType: 'json',
-  //   data: newdata,
-  //   headers: { 'Authorization': 'PHOTOHACKDAY123' }, // replace me!!!
+  //   data: image.attr('src'),
+  //   headers: { 'Authorization': 'PHOTOHACKDAY-bj04dKxjMwMjFA' },
   //   success: function(data) {
   //     $(image).data('vision-url',data['location']);
   //   }
@@ -107,13 +140,13 @@ function pullEyeEmVision (image, resultCallback) {
   //   type: 'GET',
   //   url: $(image).data('vision-url'),
   //   dataType: 'json',
-  //   headers: { 'Authorization': 'PHOTOHACKDAY123' }, // replace me!!!
+  //   headers: { 'Authorization': 'PHOTOHACKDAY-bj04dKxjMwMjFA' }, // replace me!!!
   //   success: function(data) {
   //     $(image).data('as', data['aestheticsScore']);
   //     resultCallback(image,data);
   //   },
   //   error: function() {
-  //     setTimeout(pullEyeEmVision, 2000, image, resultCallback);
+  //     // setTimeout(pullEyeEmVision, 2000, image, resultCallback);
   //   }
   // });
   $(image).data('as', vision_get[vgc]['aestheticsScore']);

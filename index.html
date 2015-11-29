@@ -28,11 +28,17 @@
 			</div>
 			<div class="col-md-4">
 				<a href='https://dash.evercam.io/v1/cameras' target='_blank'>
-				Add more cameras
+
+				<img  class="img-responsive img-thumbnail" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Add more cameras&w=250&h=250"/>
+
 				</a>
 			</div>
 		</div>
-		<a id='oneToTwo' class="btn btn-primary btn-lg" href="#" role="button">Next Step</a>
+		<div class="row" style="margin-top:15px">
+			<div class="col-md-12">
+				<a id='oneToTwo' class="btn btn-primary btn-lg" href="#" role="button">Next Step</a>
+			</div>
+		</div>
 	</div>
 
 <!-- edit image -->
@@ -45,8 +51,12 @@
 				<img id="editable-image" class="img-responsive" src=""/>
 			</div>
 		</div>
-		<a id='moreEdit' class="btn btn-default btn-lg" href="#" role="button">More Editing</a>
-		<a id='twoToThree' class="btn btn-primary btn-lg" href="#" role="button" disabled="disabled">Next Step</a>
+		<div class="row" style="margin-top:15px">
+			<div class="col-md-12">
+				<a id='moreEdit' class="btn btn-default btn-lg" href="#" role="button">More Editing</a>
+				<a id='twoToThree' class="btn btn-primary btn-lg" href="#" role="button" disabled="disabled">Next Step</a>
+			</div>
+		</div>
 	</div>
 	<!-- compare to original image -->
 	<div class='stepThree hidden'>
@@ -55,7 +65,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<img id="original-image" class="img-responsive" src="images/historisches_museum.jpg"/>
+				<img id="original-image" class="img-responsive img-thumbnail" src="images/historisches_museum.jpg"/>
 				<h4 id='original-image-score'></h4>
 				<div class="progress">
 				  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
@@ -64,7 +74,7 @@
 			</div>
 
 			<div class="col-md-6">
-				<img id="edited-image" class="img-responsive" src="images/historisches_museum-edit.jpg"/>
+				<img id="edited-image" class="img-responsive img-thumbnail" src="images/historisches_museum-edit.jpg"/>
 				<h4 id='edited-image-score'></h4>
 				<div class="progress">
 				  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
@@ -72,11 +82,18 @@
 				</div>
 
 			</div>
+			<div class="row" style="margin-top:15px">
+				<div class="col-md-12">
+					<a id='restart' class="btn btn-primary btn-lg" href="#" role="button">Restart</a>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="evercam.js"></script>
+	<script type="text/javascript" src="base64-binary.js"></script>
 	<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 </body>
